@@ -1,0 +1,28 @@
+{
+  "name": "webgl-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanfortuin/webgl-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stefanfortuin/webgl-practice/issues"
+  },
+  "homepage": "https://github.com/stefanfortuin/webgl-practice#readme",
+  "devDependencies": {
+    "laravel-mix": "^6.0.27"
+  },
+  "dependencies": {
+    "glslify-loader": "^2.0.0",
+    "ogl": "^0.0.73",
+    "raw-loader": "^4.0.2"
+  }
+}
