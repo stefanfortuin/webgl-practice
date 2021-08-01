@@ -18,11 +18,12 @@
   },
   "homepage": "https://github.com/stefanfortuin/webgl-practice#readme",
   "devDependencies": {
-    "laravel-mix": "^6.0.27"
+    "dat.gui": "^0.7.7",
+    "glslify-loader": "^2.0.0",
+    "laravel-mix": "^6.0.27",
+    "raw-loader": "^4.0.2"
   },
   "dependencies": {
-    "glslify-loader": "^2.0.0",
-    "ogl": "^0.0.73",
-    "raw-loader": "^4.0.2"
+    "ogl": "^0.0.73"
   }
 }

@@ -1,4 +1,5 @@
-import { Renderer, Camera, Transform, Plane, Program, Mesh, Post, Vec2 } from 'ogl';
+import { Renderer, Camera, Transform, Plane, Program, Mesh, Post, Vec2, Texture} from 'ogl';
+import * as dat from 'dat.gui';
 import vertex from './shaders/vertex.glsl';
 import fragment from './shaders/fragment.glsl';
 import fxaa_fragment from './shaders/fxaa-fragment.glsl';
@@ -27,14 +28,21 @@ resize();
 const scene = new Transform();
 
 const geometry =  new Plane(gl, {
-	heightSegments: 50,
-	widthSegments: 100
+	heightSegments: 30,
+	widthSegments: 40
 })
+
+const texture = new Texture(gl, {
+	generateMipmaps: false
+})
+
+
 
 const program = new Program(gl, {
 	vertex: vertex,
 	fragment: fragment,
 	uniforms: {
+		tMap: {value: texture },
 		uTime: { value: 0 },
 	}
 });
@@ -44,6 +52,12 @@ const mesh = new Mesh(gl, { geometry, program });
 // mesh.rotation.y = 1;
 mesh.setParent(scene);
 
+const image = new Image();
+image.src = '/images/cerelia-1.jpg';
+image.onload = () => {
+	texture.image = image;
+}
+
 post.addPass({
 	fragment: fxaa_fragment,
 	uniforms: {
@@ -51,12 +65,17 @@ post.addPass({
 	},
 })
 
+let time = {value: 0.1};
+
 requestAnimationFrame(update);
 function update(t) {
 	requestAnimationFrame(update);
 
 	// mesh.rotation.y -= 0.004;
 	// mesh.rotation.x += 0.003;
-	program.uniforms.uTime.value += 0.04;
+	program.uniforms.uTime.value += time.value;
 	post.render({ scene, camera });
 }
+
+let gui = new dat.GUI();
+gui.add(time,'value', 0,0.1);
