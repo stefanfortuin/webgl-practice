@@ -44,6 +44,8 @@ const program = new Program(gl, {
 	uniforms: {
 		tMap: {value: texture },
 		uTime: { value: 0 },
+		uGrad: { value: 0 },
+		uLinewidth: { value: 0 },
 	}
 });
 
@@ -65,7 +67,9 @@ post.addPass({
 	},
 })
 
-let time = {value: 0.1};
+let time = {value: 0.04};
+let grad = {value: 3.0};
+let linewidth = {value: 0.5};
 
 requestAnimationFrame(update);
 function update(t) {
@@ -74,8 +78,12 @@ function update(t) {
 	// mesh.rotation.y -= 0.004;
 	// mesh.rotation.x += 0.003;
 	program.uniforms.uTime.value += time.value;
+	program.uniforms.uGrad.value = grad.value;
+	program.uniforms.uLinewidth.value = linewidth.value;
 	post.render({ scene, camera });
 }
 
 let gui = new dat.GUI();
 gui.add(time,'value', 0,0.1);
+gui.add(grad,'value', 0,12);
+gui.add(linewidth,'value', 0,1);
